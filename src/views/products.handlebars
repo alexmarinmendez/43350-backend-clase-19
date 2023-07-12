@@ -1,0 +1,11 @@
+<div>
+    Bienvenido {{ username }}
+</div>
+<div>
+    Aqui van los productos!!!
+    <ul>
+    {{#each products}}
+        <li>{{this.name}}</li>
+    {{/each}}
+    </ul>
+</div>
