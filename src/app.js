@@ -1,13 +1,18 @@
 import express from 'express'
 import session from 'express-session'
-import FileStore from 'session-file-store'
+import MongoStore from 'connect-mongo'
 import handlebars from 'express-handlebars'
 
 const app = express()
-const fileStore = FileStore(session)
+
 app.use(session({
-    store: new fileStore({
-        path: './sessions',
+    store: MongoStore.create({
+        mongoUrl: 'mongodb://localhost:27017',
+        dbName: 'clase19',
+        mongoOptions: {
+            useNewUrlParser: true,
+            useUnifiedTopology: true
+        }
     }),
     secret: 'victoriasecret',
     resave: true,
