@@ -1,8 +1,13 @@
 import express from 'express'
 import session from 'express-session'
+import FileStore from 'session-file-store'
 
 const app = express()
+const fileStore = FileStore(session)
 app.use(session({
+    store: new fileStore({
+        path: './sessions',
+    }),
     secret: 'victoriasecret',
     resave: true,
     saveUninitialized: true
